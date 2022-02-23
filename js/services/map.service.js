@@ -27,7 +27,7 @@ function panTo(lat, lng) {
     gCurrPosition = { lat, lng }
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-    ajaxService.getWeatherAPI(lat, lng)
+    ajaxService.getWeatherAPI(gCurrPosition)
         .then(renderWeather)
         .catch('No values found')
 }
