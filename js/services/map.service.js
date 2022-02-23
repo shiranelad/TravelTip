@@ -19,7 +19,6 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
-            // console.log('Map!', gMap);
         })
 }
 
@@ -35,6 +34,7 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
+    ajaxService.getWeatherAPI()
 }
 
 function getMap() {
