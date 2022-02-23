@@ -7,9 +7,11 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 
+
 function onInit() {
     mapService.initMap()
         .then(() => {
+            addMapListener()
             console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
@@ -47,7 +49,25 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
-function onPanTo() {
+function onPanTo(lat,lng) {
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);  //Tokyo
+    // mapService.panTo(35.6895, 139.6917);  //Tokyo
+    mapService.panTo(lat, lng);  //Tokyo
+}
+
+//Shiran
+function addMapListener(){
+    var map = mapService.getMap()
+    console.log(map)
+    google.maps.event.addListener(map, 'click', (e) => {
+        var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
+        // var locName = prompt('Enter a name for your location')
+        // if (!locName) return
+        onPanTo(position.lat,position.lng)
+        // var marker = new google.maps.Marker({
+        //     position: { lat, lng },
+        //     map,
+        //     title: "Your location",
+        // });
+    });
 }

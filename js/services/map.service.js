@@ -2,7 +2,8 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getMap
 }
 
 var gMap;
@@ -35,7 +36,9 @@ function panTo(lat, lng) {
     gMap.panTo(laLatLng);
 }
 
-
+function getMap(){
+    return gMap;
+}
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
