@@ -14,7 +14,7 @@
         <section class="search-container flex">
             <div class="search-bar">
                 <input type="text" placeholder="Search" class="search-input">
-                <button class="btn-search">GO</button>
+                <button class="btn-search" onclick="onSearch()">GO</button>
             </div>
             <button onclick="onGetUserPos()" class="btn-user-pos">My Location</button>
         </section>
@@ -30,7 +30,7 @@
 
     <main class="main-content main-layout flex space-between">
         <div class="flex col space-between buttons-container">
-            <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
+            <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Specific Location</button>
             <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
             <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button>
             <div class="locations-table">
@@ -44,6 +44,7 @@
 
 
     <script type="module" src="js/app.controller.js"></script>
+    <script src="lib/axios.js"></script>
 </body>
 
 </html>

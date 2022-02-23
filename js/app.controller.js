@@ -6,6 +6,7 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onSearch = onSearch;
 
 
 function onInit() {
@@ -50,25 +51,31 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
-function onPanTo(lat,lng) {
+function onPanTo(lat, lng) {
     console.log('Panning the Map');
     // mapService.panTo(35.6895, 139.6917);  //Tokyo
     mapService.panTo(lat, lng);  //Tokyo
 }
 
 //Shiran
-function addMapListener(){
+function addMapListener() {
     var map = mapService.getMap()
     console.log(map)
     google.maps.event.addListener(map, 'click', (e) => {
-        var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
+        var position = { lat: e.latLng.lat(), lng: e.latLng.lng() }
         // var locName = prompt('Enter a name for your location')
         // if (!locName) return
-        onPanTo(position.lat,position.lng)
+        onPanTo(position.lat, position.lng)
         // var marker = new google.maps.Marker({
         //     position: { lat, lng },
         //     map,
         //     title: "Your location",
         // });
     });
+}
+
+function onSearch() {
+    const searchVal = document.querySelector('.search-input').value;
+    // var map = getMap()
+    mapService.searchLocation(searchVal);    
 }
