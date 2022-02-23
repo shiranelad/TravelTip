@@ -6,3 +6,7 @@
 .search-container {
     gap: .6rem
 }
+
+.location-info {
+    margin-bottom: 1rem;
+}
