@@ -16,9 +16,6 @@ var gUserLocations = [
     createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825),
     createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825)
 ]
-console.log('gUserLocations', gUserLocations);
-
-
 
 
 // const locs = [

@@ -30,9 +30,11 @@
 
     <main class="main-content main-layout flex space-between">
         <div class="flex col space-between buttons-container">
-            <button onclick="onAddMarker()" class="btn-add-marker btn">Add Marker Specific Location</button>
-            <button onclick="onGetLocs()" class="btn-get-locs btn">Get Locations</button>
-            <button onclick="onPanTo()" class="btn-pan btn">Pan Map to Tokyo</button>
+            <section class="weather-container">
+                <button onclick="onAddMarker()" class="btn-add-marker btn">Add Marker Specific Location</button>
+                <button onclick="onGetLocs()" class="btn-get-locs btn">Get Locations</button>
+                <button onclick="onPanTo()" class="btn-pan btn">Pan Map to Tokyo</button>
+            </section>
             <div class="locations-table">
                 <h2 class="locations-title">Locations:</h2>
                 <div class="my-locations">
@@ -41,6 +43,11 @@
         </div>
         <div id="map" class="map-container"></div>
     </main>
+
+    <div class="modal hide">
+        <h3>Choose name for this location</h3>
+        <input type="text" placeholder="Write down your name" onsubmit="">
+    </div>
 
     <script src="lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>

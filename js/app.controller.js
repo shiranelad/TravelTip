@@ -88,22 +88,20 @@ function addMapListener() {
     console.log(map)
     google.maps.event.addListener(map, 'click', (e) => {
         var position = { lat: e.latLng.lat(), lng: e.latLng.lng() }
-            // var locName = prompt('Enter a name for your location')
-            // if (!locName) return
-        onPanTo(position.lat, position.lng)
-            // var marker = new google.maps.Marker({
-            //     position: { lat, lng },
-            //     map,
-            //     title: "Your location",
-            // });
+        var marker = new google.maps.Marker({
+            position,
+            map,
+            title: "Your location",
+            icon: '../img/pin.png'
+        });
     });
 }
 
 function onSearch() {
+    swalAlert()
     const searchVal = document.querySelector('.search-input').value;
     mapService.searchLocation(searchVal);
 }
-<<<<<<< HEAD
 
 function searchForParams() {
     const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -121,5 +119,3 @@ function onSaveLocation() {
     navigator.clipboard.writeText(url)
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
 }
-=======
->>>>>>> 97311231717b085ffcd8b0095f397b4bd35866fd
