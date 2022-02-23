@@ -23,6 +23,7 @@ function onInit() {
         })
         .catch(() => console.log('Error: cannot init map'));
     onGetLocs()
+    searchForParams()
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -45,7 +46,7 @@ function onGetLocs() {
                 </div>
                 <div class="card-btns-container">
                 <button class="card-btn" onclick="onPanTo(${loc.lat}, ${loc.lng})">GO</button>
-                <button class="card-btn" onclick="onDeleteLocation(${loc.id})">X</button>
+                <button class="card-btn" onclick="onDeleteLocation('${loc.id}')">X</button>
                 </div>
             </div>
             ` })
