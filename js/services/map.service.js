@@ -1,5 +1,4 @@
 
-
 export const mapService = {
     initMap,
     addMarker,
@@ -40,7 +39,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = ''; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyC5idAOLFGUz3mtXME-jgQGPAKuZH3c_dI'; 
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;

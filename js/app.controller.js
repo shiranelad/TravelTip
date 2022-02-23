@@ -25,7 +25,7 @@ function getPosition() {
 
 function onAddMarker() {
     console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 }); //Kfar Sirkin
 }
 
 function onGetLocs() {
@@ -49,5 +49,5 @@ function onGetUserPos() {
 }
 function onPanTo() {
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+    mapService.panTo(35.6895, 139.6917);  //Tokyo
 }
