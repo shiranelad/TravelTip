@@ -1,0 +1,24 @@
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.main-layout {
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
