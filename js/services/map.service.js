@@ -42,9 +42,12 @@ function searchLocation(searchVal) {
 }
 
 function onCopyLocation() {
-    var url = `https://github.io/me/travelTip/index.html?lat=${gCurrPosition.lat}&lng=${gCurrPosition.lng}`
+    var url = `https://shiranelad.github.io/TravelTip/?lat=${gCurrPosition.lat}&lng=${gCurrPosition.lng}`
     navigator.clipboard.writeText(url)
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
+    setTimeout(() => {
+        document.querySelector('.btn-copy-location').innerText = 'Copy Location'
+    }, 1500)
 }
 
 

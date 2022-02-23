@@ -4,7 +4,6 @@ import { mapService } from './services/map.service.js'
 
 
 window.onload = onInit;
-window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
@@ -117,6 +116,8 @@ function openModal() {
 
 function closeModal() {
     document.querySelector('.modal').classList.add('hide');
+    document.querySelector('.location-name-input').value = ''
+
 }
 
 function onAddLocation() {
