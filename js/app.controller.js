@@ -74,7 +74,7 @@ function onPanTo(lat, lng) {
     console.log('Panning the Map');
     currPosition = { lat, lng }
     document.querySelector('.btn-copy-location').innerText = 'Copy Location'
-    mapService.panTo(lat, lng); //Tokyo
+    mapService.panTo(lat, lng); 
 }
 
 function onDeleteLocation(locId) {
@@ -82,7 +82,7 @@ function onDeleteLocation(locId) {
     locService.deleteLocation(locId)
     onGetLocs()
 }
-//Shiran
+
 function addMapListener() {
     var map = mapService.getMap()
     console.log(map)
@@ -103,7 +103,6 @@ function onSearch() {
     const searchVal = document.querySelector('.search-input').value;
     mapService.searchLocation(searchVal);
 }
-<<<<<<< HEAD
 
 function searchForParams() {
     const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -121,5 +120,3 @@ function onSaveLocation() {
     navigator.clipboard.writeText(url)
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
 }
-=======
->>>>>>> 97311231717b085ffcd8b0095f397b4bd35866fd
