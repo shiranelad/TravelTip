@@ -3,8 +3,17 @@
     margin-bottom: 1rem;
 }
 
+.main-header h1 {
+    font-family: Nunito-bold;
+    font-size: 50px;
+}
+
 .search-container {
     gap: .6rem
+}
+
+.search-input {
+    height: 30px;
 }
 
 .location-info {

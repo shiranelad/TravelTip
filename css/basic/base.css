@@ -4,6 +4,24 @@
 
 body {
     margin: 0;
-    background-color: rgb(95, 95, 150);
+    background-color: var(--clr1);
     color: white;
+    font-family: Nunito-regular, sans-serif;
+}
+
+button {
+    font-family: Nunito-regular, sans-serif;
+    border: 0;
+    outline: 0;
+    height: 30px;
+    background-color: rgb(7, 7, 32);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+span {
+    font-size: .8em;
+    font-family: Nunito-light;
+    color: var(--clr2)
 }

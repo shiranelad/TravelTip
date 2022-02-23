@@ -3,15 +3,20 @@
     grid-template-columns: 1fr 5fr;
     grid-auto-rows: auto;
     gap: .6rem;
-    padding: .6rem;
-    height: 50%;
-    background-color: rgb(63, 63, 156);
+    background-color: rgba(0, 0, 0, 0.479);
+    min-height: 50%;
 }
 
 .location-card {
     background-color: rgba(0, 0, 0, 0.479);
     padding: .5rem;
-    border-bottom: 1px solid rgb(21, 21, 66);
+    border-bottom: 1px solid rgb(14, 14, 53);
+}
+
+.locations-title {
+    margin-inline-start: .5rem;
+    margin-block-end: 0;
+    margin-block-start: 0;
 }
 
 .card-btn {

@@ -12,6 +12,8 @@ var globalId = 100;
 // var gUserLocations = storageService.load(STORAGE_KEY) || []
 var gUserLocations = [
     createLocation('My Home', 31.79346180394652, 35.16714360932752),
+    createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825),
+    createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825),
     createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825)
 ]
 console.log('gUserLocations', gUserLocations);

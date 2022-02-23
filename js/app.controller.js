@@ -9,6 +9,7 @@ window.onGetUserPos = onGetUserPos;
 window.onDeleteLocation = onDeleteLocation;
 window.onSearch = onSearch;
 
+var currPosition = {}
 
 function onInit() {
     mapService.initMap()
@@ -39,9 +40,9 @@ function onGetLocs() {
             var strHTML = locs.map(loc => { return `
             <div class="location-card  flex align-center space-between">
                 <div>
-                <div class="card-title">Name: ${loc.name}</div>
-                <div class="card-latlng">lat: ${loc.lat}</div>
-                <div class="card-latlng">lng: ${loc.lng}</div>
+                <div class="card-title">Name: <span>${loc.name}</span></div>
+                <div class="card-latlng">lat: <span>${loc.lat}</span></div>
+                <div class="card-latlng">lng: <span>${loc.lng}</span></div>
                 </div>
                 <div class="card-btns-container">
                 <button class="card-btn" onclick="onPanTo(${loc.lat}, ${loc.lng})">GO</button>
@@ -66,9 +67,11 @@ function onGetUserPos() {
         })
 }
 
+// mapService.panTo(35.6895, 139.6917);  //Tokyo
 function onPanTo(lat, lng) {
     console.log('Panning the Map');
-    // mapService.panTo(35.6895, 139.6917);  //Tokyo
+    currPosition = { lat, lng }
+    document.querySelector('.btn-copy-location').innerText = 'Copy Location'
     mapService.panTo(lat, lng); //Tokyo
 }
 
@@ -98,4 +101,21 @@ function onSearch() {
     const searchVal = document.querySelector('.search-input').value;
     // var map = getMap()
     mapService.searchLocation(searchVal);
+}
+
+function searchForParams() {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let lat = params.lat
+    let lng = params.lng
+    console.log('lat, lng', lat, lng);
+    if (!lat || !lng) return false
+    else onPanTo(lat, lng)
+}
+
+function onSaveLocation() {
+    var url = `https://github.io/me/travelTip/index.html?lat=${currPosition.lat}&lng=${currPosition.lng}`
+    navigator.clipboard.writeText(url)
+    document.querySelector('.btn-copy-location').innerText = 'Copied!'
 }

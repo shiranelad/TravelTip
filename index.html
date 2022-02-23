@@ -19,7 +19,7 @@
             <button onclick="onGetUserPos()" class="btn-user-pos">My Location</button>
         </section>
     </header>
-    <section class="location-info flex space-between main-layout">
+    <section class="location-info flex space-between main-layout align-center">
         <div class="location-header">
             <h1>
                 Location: <span class="user-pos"></span>
@@ -30,11 +30,11 @@
 
     <main class="main-content main-layout flex space-between">
         <div class="flex col space-between buttons-container">
-            <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Specific Location</button>
-            <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-            <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button>
+            <button onclick="onAddMarker()" class="btn-add-marker btn">Add Marker Specific Location</button>
+            <button onclick="onGetLocs()" class="btn-get-locs btn">Get Locations</button>
+            <button onclick="onPanTo()" class="btn-pan btn">Pan Map to Tokyo</button>
             <div class="locations-table">
-                <h3 class="locations-title">Locations: <span class="locs"></span></h3>
+                <h2 class="locations-title">Locations:</h2>
                 <div class="my-locations">
                 </div>
             </div>
