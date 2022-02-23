@@ -2,7 +2,8 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    getMap
+    getMap,
+    searchLocation,
 }
 
 var gMap;
@@ -14,9 +15,9 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                    center: { lat, lng },
-                    zoom: 15
-                })
+                center: { lat, lng },
+                zoom: 15
+            })
             console.log('Map!', gMap);
         })
 }
@@ -35,8 +36,14 @@ function panTo(lat, lng) {
     gMap.panTo(laLatLng);
 }
 
-function getMap(){
+function getMap() {
     return gMap;
+}
+
+function searchLocation(searchVal) {
+    console.log(searchVal)
+    _connectGoogleApi('search', searchVal)
+    console.log('searching for...', searchVal)
 }
 
 function _connectGoogleApi() {
@@ -52,3 +59,12 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
+
+// if (conx === 'search'){
+//     console.log('conx: ', conx)
+//     url = `https://maps.googleapis.com/maps/api/geocode/json?address=${searchVal}&key=${API_KEY}`
+// }
+// else if (conx === 'init') {
+//     url = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
+// }

@@ -7,6 +7,8 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDeleteLocation = onDeleteLocation;
+window.onSearch = onSearch;
+
 
 function onInit() {
     mapService.initMap()
@@ -90,4 +92,10 @@ function addMapListener() {
             //     title: "Your location",
             // });
     });
+}
+
+function onSearch() {
+    const searchVal = document.querySelector('.search-input').value;
+    // var map = getMap()
+    mapService.searchLocation(searchVal);
 }
