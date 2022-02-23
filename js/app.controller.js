@@ -1,6 +1,8 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+
+
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
@@ -99,9 +101,9 @@ function addMapListener() {
 
 function onSearch() {
     const searchVal = document.querySelector('.search-input').value;
-    // var map = getMap()
     mapService.searchLocation(searchVal);
 }
+<<<<<<< HEAD
 
 function searchForParams() {
     const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -119,3 +121,5 @@ function onSaveLocation() {
     navigator.clipboard.writeText(url)
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
 }
+=======
+>>>>>>> 97311231717b085ffcd8b0095f397b4bd35866fd
