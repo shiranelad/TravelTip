@@ -74,7 +74,7 @@ function onPanTo(lat, lng) {
     console.log('Panning the Map');
     currPosition = { lat, lng }
     document.querySelector('.btn-copy-location').innerText = 'Copy Location'
-    mapService.panTo(lat, lng); 
+    mapService.panTo(lat, lng);
 }
 
 function onDeleteLocation(locId) {
@@ -98,7 +98,6 @@ function addMapListener() {
 }
 
 function onSearch() {
-    swalAlert()
     const searchVal = document.querySelector('.search-input').value;
     mapService.searchLocation(searchVal);
 }
@@ -118,8 +117,9 @@ function onSaveLocation() {
     var url = `https://github.io/me/travelTip/index.html?lat=${currPosition.lat}&lng=${currPosition.lng}`
     navigator.clipboard.writeText(url)
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
-<<<<<<< HEAD
 }
-=======
+
+function showModal() {
+    document.querySelector('.modal').classList.remove('hide');
+
 }
->>>>>>> 872a44227bccdcb50580c2f2e3ac0e009c8c37bf
