@@ -10,8 +10,10 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDeleteLocation = onDeleteLocation;
 window.onSearch = onSearch;
+window.onAddLocation = onAddLocation;
+window.closeModal = closeModal;
 
-var currPosition = {}
+var markedPosition = {}
 
 function onInit() {
     mapService.initMap()
@@ -20,25 +22,20 @@ function onInit() {
             console.log('Map is ready');
         })
         .catch(() => console.log('Error: cannot init map'));
+    onGetLocs()
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
-    console.log('Getting Pos');
+    // console.log('Getting Pos');
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
 }
 
-function onAddMarker() {
-    console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 }); //Kfar Sirkin
-}
-
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
-            console.log('Locations:', locs)
             var strHTML = locs.map(loc => { return `
             <div class="location-card  flex align-center space-between">
                 <div>
@@ -60,7 +57,6 @@ function onGetUserPos() {
     getPosition()
         .then(pos => {
             onPanTo(pos.coords.latitude, pos.coords.longitude);
-            console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
         })
@@ -71,23 +67,24 @@ function onGetUserPos() {
 
 // mapService.panTo(35.6895, 139.6917);  //Tokyo
 function onPanTo(lat, lng) {
-    console.log('Panning the Map');
-    currPosition = { lat, lng }
+    // console.log('Panning the Map');
     document.querySelector('.btn-copy-location').innerText = 'Copy Location'
     mapService.panTo(lat, lng);
 }
 
 function onDeleteLocation(locId) {
-    console.log('Deleting location with id:', locId);
+    // console.log('Deleting location with id:', locId);
     locService.deleteLocation(locId)
     onGetLocs()
 }
 
 function addMapListener() {
     var map = mapService.getMap()
-    console.log(map)
+        // console.log(map)
     google.maps.event.addListener(map, 'click', (e) => {
         var position = { lat: e.latLng.lat(), lng: e.latLng.lng() }
+        markedPosition = position
+        openModal()
         var marker = new google.maps.Marker({
             position,
             map,
@@ -113,13 +110,17 @@ function searchForParams() {
     else onPanTo(lat, lng)
 }
 
-function onSaveLocation() {
-    var url = `https://github.io/me/travelTip/index.html?lat=${currPosition.lat}&lng=${currPosition.lng}`
-    navigator.clipboard.writeText(url)
-    document.querySelector('.btn-copy-location').innerText = 'Copied!'
+function openModal() {
+    document.querySelector('.modal').classList.remove('hide');
 }
 
-function showModal() {
-    document.querySelector('.modal').classList.remove('hide');
+function closeModal() {
+    document.querySelector('.modal').classList.add('hide');
+}
 
+function onAddLocation() {
+    var value = document.querySelector('.location-name-input').value;
+    locService.addLocation(value, markedPosition.lat, markedPosition.lng);
+    closeModal()
+    onGetLocs()
 }

@@ -1,37 +1,30 @@
-import { ajaxService } from './ajax.service.js'; 
+import { ajaxService } from './ajax.service.js';
 export const mapService = {
     initMap,
-    addMarker,
     panTo,
     getMap,
     searchLocation,
 }
+window.onCopyLocation = onCopyLocation;
 
+var gCurrPosition = {}
 var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
+    // console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available');
+            // console.log('google available');
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
-                center: { lat, lng },
-                zoom: 15
-            })
+                    center: { lat, lng },
+                    zoom: 15
+                })
         })
 }
 
-function addMarker(loc) {
-    var marker = new google.maps.Marker({
-        position: loc,
-        map: gMap,
-        title: 'Hello World!'
-    });
-    return marker;
-}
-
 function panTo(lat, lng) {
+    gCurrPosition = { lat, lng }
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
     ajaxService.getWeatherAPI()
@@ -43,12 +36,19 @@ function getMap() {
 
 function searchLocation(searchVal) {
     return ajaxService.getSearchAPI(searchVal)
-    .then(panTo)   
+        .then(res => panTo(res.lat, res.lng))
 }
+
+function onCopyLocation() {
+    var url = `https://github.io/me/travelTip/index.html?lat=${gCurrPosition.lat}&lng=${gCurrPosition.lng}`
+    navigator.clipboard.writeText(url)
+    document.querySelector('.btn-copy-location').innerText = 'Copied!'
+}
+
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY =  'AIzaSyC5idAOLFGUz3mtXME-jgQGPAKuZH3c_dI';
+    const API_KEY = 'AIzaSyC5idAOLFGUz3mtXME-jgQGPAKuZH3c_dI';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;

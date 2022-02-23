@@ -1,0 +1,56 @@
+@media (max-width: 960px) {
+    .main-content {
+        flex-direction: column;
+    }
+    .map-container {
+        width: 100%;
+        order: -1;
+    }
+    .buttons-container {
+        flex-direction: row;
+        width: 100%;
+    }
+    .weather-container {
+        height: unset;
+        max-width: 40%;
+    }
+    .locations-table {
+        max-width: 60%;
+        /* display: grid; */
+    }
+}
+
+@media (max-width: 780px) {
+    .main-layout {
+        max-width: 95%;
+    }
+    .location-info {
+        flex-direction: column;
+    }
+    .weather-container {
+        max-width: 50%;
+    }
+    .locations-table {
+        display: block;
+        min-width: 50%;
+    }
+}
+
+@media (max-width: 680px) {
+    .buttons-container {
+        flex-direction: column;
+    }
+    .weather-container {
+        max-width: 100%;
+    }
+    .locations-table {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 586px) {
+    .main-header {
+        flex-direction: column;
+        height: unset;
+    }
+}

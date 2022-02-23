@@ -3,7 +3,6 @@
     grid-template-columns: 1fr 5fr;
     grid-auto-rows: auto;
     gap: .6rem;
-    background-color: rgba(0, 0, 0, 0.479);
     min-height: 50%;
 }
 

@@ -8,12 +8,6 @@
 @import 'basic/base.css';
 @import 'basic/helpers.css';
 
-/* @import 'basic/mq.css'; */
-
-
-/* @import 'basic/animations.css'; */
-
-
 /* COMPONENTS */
 
 @import 'components/main-header.css';
@@ -21,4 +15,6 @@
 @import 'components/locations-table.css';
 @import 'components/modal.css';
 
-/* @import 'components/footer.css'; */
+/* MEDIA QUERIES */
+
+@import 'basic/media-queries.css';

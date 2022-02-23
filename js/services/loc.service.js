@@ -3,25 +3,12 @@ import { storageService } from './storage.service.js'
 
 export const locService = {
     getLocs,
-    deleteLocation
+    deleteLocation,
+    addLocation
 }
 const STORAGE_KEY = 'userLocsDB'
-var globalId = 100;
 
-
-// var gUserLocations = storageService.load(STORAGE_KEY) || []
-var gUserLocations = [
-    createLocation('My Home', 31.79346180394652, 35.16714360932752),
-    createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825),
-    createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825),
-    createLocation('Tel Aviv', 32.07341332725964, 34.790386152863825)
-]
-
-
-// const locs = [
-//     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
-//     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-// ]
+var gUserLocations = storageService.load(STORAGE_KEY) || []
 
 function getLocs() {
     return new Promise((resolve, reject) => {
@@ -31,22 +18,20 @@ function getLocs() {
     });
 }
 
-//TODO - create an ID, fix the Weather key and update UpdatedAt
 function createLocation(name, lat, lng) {
     return {
-        id: globalId++,
+        id: _makeId(),
         name,
         lat,
         lng,
-        weather: 'winter',
         createdAt: Date.now(),
-        updatedAt: Date.now()
     }
 }
 
 function addLocation(name, lat, lng) {
     const location = createLocation(name, lat, lng)
     gUserLocations.push(location)
+    saveLocationsToStorage()
 }
 
 function deleteLocation(locId) {
@@ -57,4 +42,13 @@ function deleteLocation(locId) {
 
 function saveLocationsToStorage() {
     storageService.save(STORAGE_KEY, gUserLocations)
+}
+
+function _makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
 }
