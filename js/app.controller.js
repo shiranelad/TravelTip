@@ -125,7 +125,7 @@ function onAddLocation() {
     closeModal()
     onGetLocs()
 }
-}
+
 
 function renderWeather(weather) {
     var elWeather = document.querySelector('.weather-container')
