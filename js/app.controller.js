@@ -98,7 +98,6 @@ function addMapListener() {
 }
 
 function onSearch() {
-    swalAlert()
     const searchVal = document.querySelector('.search-input').value;
     mapService.searchLocation(searchVal);
 }
@@ -118,8 +117,9 @@ function onSaveLocation() {
     var url = `https://github.io/me/travelTip/index.html?lat=${currPosition.lat}&lng=${currPosition.lng}`
     navigator.clipboard.writeText(url)
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 872a44227bccdcb50580c2f2e3ac0e009c8c37bf
+
+{/* <div class="weather-card">HEAD</div>
+                <div>DESCRIPTION</div>
+                <div>TEMP MIN MAX</div>
+                <div>HUMIDITY</div> */}
