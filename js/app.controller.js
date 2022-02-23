@@ -1,6 +1,8 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+
+
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
@@ -76,6 +78,6 @@ function addMapListener() {
 
 function onSearch() {
     const searchVal = document.querySelector('.search-input').value;
-    // var map = getMap()
+    console.log(searchVal)
     mapService.searchLocation(searchVal);    
 }
