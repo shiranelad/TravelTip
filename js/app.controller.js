@@ -115,6 +115,8 @@ function openModal() {
 
 function closeModal() {
     document.querySelector('.modal').classList.add('hide');
+    document.querySelector('.location-name-input').value = ''
+
 }
 
 function onAddLocation() {
