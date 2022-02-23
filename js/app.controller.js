@@ -105,8 +105,8 @@ function searchForParams() {
     let lat = params.lat
     let lng = params.lng
     console.log('lat, lng', lat, lng);
-    if (!lat || !lng) return false
-    else onPanTo(lat, lng)
+    /* if (!lat || !lng) return
+    else */ onPanTo(lat, lng)
 }
 
 function openModal() {
