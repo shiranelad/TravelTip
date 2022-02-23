@@ -6,7 +6,7 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
-
+window.onDeleteLocation = onDeleteLocation;
 
 function onInit() {
     mapService.initMap()
@@ -34,7 +34,20 @@ function onGetLocs() {
     locService.getLocs()
         .then(locs => {
             console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs)
+            var strHTML = locs.map(loc => { return `
+            <div class="location-card  flex align-center space-between">
+                <div>
+                <div class="card-title">Name: ${loc.name}</div>
+                <div class="card-latlng">lat: ${loc.lat}</div>
+                <div class="card-latlng">lng: ${loc.lng}</div>
+                </div>
+                <div class="card-btns-container">
+                <button class="card-btn" onclick="onPanTo(${loc.lat}, ${loc.lng})">GO</button>
+                <button class="card-btn" onclick="onDeleteLocation(${loc.id})">X</button>
+                </div>
+            </div>
+            ` })
+            document.querySelector('.my-locations').innerHTML = strHTML.join('')
         })
 }
 
@@ -50,25 +63,31 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
-function onPanTo(lat,lng) {
+
+function onPanTo(lat, lng) {
     console.log('Panning the Map');
     // mapService.panTo(35.6895, 139.6917);  //Tokyo
-    mapService.panTo(lat, lng);  //Tokyo
+    mapService.panTo(lat, lng); //Tokyo
 }
 
+function onDeleteLocation(locId) {
+    console.log('Deleting location with id:', locId);
+    locService.deleteLocation(locId)
+    onGetLocs()
+}
 //Shiran
-function addMapListener(){
+function addMapListener() {
     var map = mapService.getMap()
     console.log(map)
     google.maps.event.addListener(map, 'click', (e) => {
-        var position = {lat: e.latLng.lat(), lng: e.latLng.lng()}
-        // var locName = prompt('Enter a name for your location')
-        // if (!locName) return
-        onPanTo(position.lat,position.lng)
-        // var marker = new google.maps.Marker({
-        //     position: { lat, lng },
-        //     map,
-        //     title: "Your location",
-        // });
+        var position = { lat: e.latLng.lat(), lng: e.latLng.lng() }
+            // var locName = prompt('Enter a name for your location')
+            // if (!locName) return
+        onPanTo(position.lat, position.lng)
+            // var marker = new google.maps.Marker({
+            //     position: { lat, lng },
+            //     map,
+            //     title: "Your location",
+            // });
     });
 }

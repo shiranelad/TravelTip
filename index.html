@@ -22,7 +22,7 @@
     <section class="location-info flex space-between main-layout">
         <div class="location-header">
             <h1>
-                Location: lat4324 lng5214
+                Location: <span class="user-pos"></span>
             </h1>
         </div>
         <button class="btn-copy-location">Copy Location</button>
@@ -34,8 +34,9 @@
             <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
             <button onclick="onPanTo()" class="btn-pan">Pan Map to Tokyo</button>
             <div class="locations-table">
-                <p>You are at: <span class="user-pos"></span></p>
-                <p>Locations: <span class="locs"></span></p>
+                <h3 class="locations-title">Locations: <span class="locs"></span></h3>
+                <div class="my-locations">
+                </div>
             </div>
         </div>
         <div id="map" class="map-container"></div>
