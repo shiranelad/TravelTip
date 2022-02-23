@@ -34,7 +34,9 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-    ajaxService.getWeatherAPI({lat,lng})
+    ajaxService.getWeatherAPI(lat,lng)
+    .then(renderWeather)
+    .catch('No values found')
 }
 
 function getMap() {
@@ -44,6 +46,8 @@ function getMap() {
 function searchLocation(searchVal) {
     return ajaxService.getSearchAPI(searchVal)
     .then(panTo)   
+    .catch(console.log('No value found'))
+
 }
 
 function _connectGoogleApi() {

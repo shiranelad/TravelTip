@@ -10,6 +10,7 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDeleteLocation = onDeleteLocation;
 window.onSearch = onSearch;
+window.renderWeather = renderWeather;
 
 var currPosition = {}
 
@@ -39,7 +40,8 @@ function onGetLocs() {
     locService.getLocs()
         .then(locs => {
             console.log('Locations:', locs)
-            var strHTML = locs.map(loc => { return `
+            var strHTML = locs.map(loc => {
+                return `
             <div class="location-card  flex align-center space-between">
                 <div>
                 <div class="card-title">Name: <span>${loc.name}</span></div>
@@ -74,7 +76,7 @@ function onPanTo(lat, lng) {
     console.log('Panning the Map');
     currPosition = { lat, lng }
     document.querySelector('.btn-copy-location').innerText = 'Copy Location'
-    mapService.panTo(lat, lng); 
+    mapService.panTo(lat, lng);
 }
 
 function onDeleteLocation(locId) {
@@ -119,7 +121,44 @@ function onSaveLocation() {
     document.querySelector('.btn-copy-location').innerText = 'Copied!'
 }
 
-{/* <div class="weather-card">HEAD</div>
+function showModal() {
+    document.querySelector('.modal').classList.remove('hide');
+
+}
+
+function renderWeather(weather) {
+    var elWeather = document.querySelector('.weather-container')
+    var strHtml = `<section class="weather-title">
+        <h3>${weather.name}</h3>
+        <div>${weather.main.temp}℃ 
+        <span>(feels like: ${weather.main.feels_like})</span>
+        </div>
+        </section>
+   <section class="flex align-center space-around">${weather.desc}
+   <img src="http://openweathermap.org/img/wn/${weather.icon}@2x.png" width="50px" height="50px"></section>
+   <section><div>Degrees from ${weather.main.temp_min} to ${weather.main.temp_max}</div>
+   <div>Wind ${weather.wind.speed}m/s</div>
+   </section>
+   <section>${weather.main.humidity}% humidity</section>`
+    elWeather.innerHTML = strHtml;
+
+
+}
+
+/* <div class="weather-card">HEAD</div>
                 <div>DESCRIPTION</div>
                 <div>TEMP MIN MAX</div>
-                <div>HUMIDITY</div> */}
+                <div>HUMIDITY</div> */
+
+// main: res.main,
+// name: res.name,
+// desc: res.weather[0].description,
+// wind: res.wind
+
+// main:
+// feels_like: 15.33
+// humidity: 57
+// pressure: 1007
+// temp: 16.17
+// temp_max: 16.17
+// temp_min: 15.08
