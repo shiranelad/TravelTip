@@ -12,6 +12,7 @@ window.onDeleteLocation = onDeleteLocation;
 window.onSearch = onSearch;
 window.onAddLocation = onAddLocation;
 window.closeModal = closeModal;
+window.renderWeather = renderWeather;
 
 var markedPosition = {}
 
@@ -123,4 +124,24 @@ function onAddLocation() {
     locService.addLocation(value, markedPosition.lat, markedPosition.lng);
     closeModal()
     onGetLocs()
+}
+}
+
+function renderWeather(weather) {
+    var elWeather = document.querySelector('.weather-container')
+    var strHtml = `<section class="weather-title">
+        <h3>${weather.name}</h3>
+        <div>${weather.main.temp}℃ 
+        <span>(feels like: ${weather.main.feels_like})</span>
+        </div>
+        </section>
+   <section class="flex align-center space-around">${weather.desc}
+   <img src="http://openweathermap.org/img/wn/${weather.icon}@2x.png" width="50px" height="50px"></section>
+   <section><div>Degrees from ${weather.main.temp_min} to ${weather.main.temp_max}</div>
+   <div>Wind ${weather.wind.speed}m/s</div>
+   </section>
+   <section>${weather.main.humidity}% humidity</section>`
+    elWeather.innerHTML = strHtml;
+
+
 }
